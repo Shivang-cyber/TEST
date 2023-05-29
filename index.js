@@ -40,7 +40,7 @@ const transporter = nodemailer.createTransport({
 
 app.use(express.json());
 
-const PORT = 4000
+const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
  res.send('Hey this is my API running 🥳')
@@ -318,8 +318,8 @@ app.post('/searchFriend', authenticateToken, async (req, res) => {
 
 
 sequelize.sync().then(() => {
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
   });
 })
 
