@@ -317,11 +317,11 @@ app.get('/about', (req, res) => {
 
 
 
-sequelize.sync().then(() => {
+// sequelize.sync().then(() => {
   app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
   });
-})
+// })
 
 
 
