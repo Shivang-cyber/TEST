@@ -1,20 +1,24 @@
-// index.js
 const express = require('express')
+const routes = require('./routes/routes');
+const sequelize = require("./config/sequelize")
 
 const app = express()
+app.use(express.json());
 const PORT = 4000
+app.use('/api', routes);
 
-app.listen(PORT, () => {
-  console.log(`API listening on PORT ${PORT} `)
+
+sequelize.sync().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
 })
+
 
 app.get('/', (req, res) => {
-  res.send('Hey this is my API running 🥳')
+  res.send('Hey this is my API')
 })
 
-app.get('/about', (req, res) => {
-  res.send('This is my about route..... ')
-})
 
 // Export the Express API
 module.exports = app
